@@ -72,8 +72,13 @@ $breakpoints-down: (
 $typography-font-size: 18px;
 $typography-font-weight: 400;
 
+@mixin breakpoint-up($size){
+  @media (min-width: map-get($breakpoints-up, $size)){
+    @content;
+  }
+}
 @mixin breakpoint-down($size){
-  @media(min-width: map-get($breakpoints-up,$size)){
+  @media (max-width: map-get($breakpoints-down,$size)){
     @content;
   }
 }
@@ -378,6 +383,25 @@ h1, h2, h3, h4, h5, h6{
   }
   @include breakpoint-down(lg){
     font-size: 15px;
+  }
+}
+
+.btn-primary{
+  background-color: $color-primary;
+  color: $color-white;
+
+  &:hover{
+    background-color: #1257b9;
+  }
+}
+
+.btn-o-primary{
+  border: 1px solid $color-primary;
+  color: $color-primary;
+
+  &:hover{
+    background-color: $color-primary;
+    color: $color-white;
   }
 }
 
