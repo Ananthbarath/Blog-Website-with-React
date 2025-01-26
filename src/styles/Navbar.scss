@@ -144,6 +144,33 @@
             width: 100%;
         }
     }
+    
+    &.scrolled{
+        background-color: $color-white;
+        box-shadow: rgba(50, 50, 93, 0.15) 0 13px 27px -5px, rgba(0, 0, 0, 0.1) 0 8px 16px -8px;
+
+        .nav-brand,
+        .nav-link,
+        .nav-show-btn{
+            color: $color-blue;
+        }
+
+        .nav-brand{
+            &-dot{
+                background-color: $color-blue;
+            }
+        }
+
+        .nav-btn{
+            border-color: $color-blue;
+            color: $color-blue;
+            &:hover{
+                background-color: $color-blue;
+                color: $color-white;
+                border-color: $color-blue;
+            }
+        }
+    }
     @include breakpoint-down(xs){
         width: 100%;
     }

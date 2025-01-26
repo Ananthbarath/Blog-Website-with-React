@@ -72,17 +72,20 @@ $breakpoints-down: (
 $typography-font-size: 18px;
 $typography-font-weight: 400;
 
+// mixins
 @mixin breakpoint-up($size){
   @media (min-width: map-get($breakpoints-up, $size)){
     @content;
   }
 }
+
 @mixin breakpoint-down($size){
-  @media (max-width: map-get($breakpoints-down,$size)){
+  @media (max-width: map-get($breakpoints-down, $size)){
     @content;
   }
 }
 
+// reset
 *,
 *::before,
 *::after{
@@ -95,6 +98,7 @@ html{
   scroll-behavior: smooth;
   overflow-y: scroll;
   text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
   height: 100%;
 }
 
@@ -106,15 +110,14 @@ body{
   font-family: $font-family-opensans;
 }
 
-ul,ol{
+ul, ol{
   list-style: none;
-
 }
-
 a{
   text-decoration: none;
   color: unset;
   transition: $default-transition;
+
   &:focus,
   &:hover{
     color: unset;
@@ -124,7 +127,6 @@ a{
 button{
   cursor: pointer;
   transition: $default-transition;
-
 }
 
 img, svg{
@@ -363,6 +365,8 @@ h1, h2, h3, h4, h5, h6{
   height: 100%;
   object-fit: cover;
 }
+
+// buttons
 .btn{
   height: 48px;
   min-width: 120px;
@@ -381,6 +385,7 @@ h1, h2, h3, h4, h5, h6{
       margin-top: -4px;
     }
   }
+
   @include breakpoint-down(lg){
     font-size: 15px;
   }
@@ -405,4 +410,359 @@ h1, h2, h3, h4, h5, h6{
   }
 }
 
+// badge
+.badge{
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 102px;
+  border-radius: 100vh;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
 
+  @include breakpoint-down(lg){
+    font-size: 14px;
+  }
+  @include breakpoint-down(sm){
+    font-size: 13px;
+  }
+}
+
+.badge-primary{
+  background-color: rgb(54, 179, 126, 0.1);
+  color: $color-primary;
+}
+
+.badge-mint{
+  background-color: $color-white;
+  color: $color-mint;
+}
+
+// title
+.title{
+  font-family: $font-family-gotham;
+  color: $color-blue;
+  font-weight: 700;
+}
+.title-lg{
+  font-size: 36px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+.title-base{
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+@include breakpoint-down(lg){
+  .title-lg{
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .title-base{
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+}
+
+@include breakpoint-down(md){
+  .title-lg{
+    font-size: 22px;
+  }
+}
+
+.featured-sc{
+  max-width: 1140px;
+  border: 1px soild #e5eaf4;
+  box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  border-radius: 16px;
+  margin: -200px auto 48px auto;
+  position: relative;
+}
+
+.section{
+  &-head{
+    margin-bottom: 48px;
+
+    .title{
+      margin-bottom: 16px;
+    }
+
+    .sc-head-l{
+      width: 50%;
+    }
+
+    @include breakpoint-down(lg){
+      flex-direction: column;
+      row-gap: 16px;
+
+      .sc-head-l, .sc-head-r{
+        width: 100%;
+      }
+    }
+  }
+
+  &-btn{
+    margin-top: 48px;
+  }
+}
+
+.popular-sc{
+  margin: 48px 0;
+
+  .card{
+    &-footer{
+      .intro-name,
+      .date-info{
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.recent-sc{
+  .card{
+    height: 500px;
+  }
+}
+
+.case-sc{
+  margin: 48px 0;
+  .card-grid{
+    border-radius: 16px;
+    border: 1px solid #e5eaf4;
+    box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+  }
+}
+
+.all-sc{
+  .card-list{
+    &:nth-child(2){
+      margin-bottom: 30px;
+    }
+
+    &:nth-child(3){
+      .card{
+        height: 500px;
+      }
+    }
+  }
+}
+
+.newsletter-curve{
+  margin-bottom: -2px;
+}
+
+.newsletter-sc{
+  .newsletter-content{
+    padding-bottom: 96px;
+    gap: 120px;
+    border-bottom: 1px solid #1a3245;
+
+    @include breakpoint-down(lg){
+      grid-template-columns: repeat(1, 1fr);
+      gap: 48px;
+
+      .newsletter-l{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 580px;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+
+        .form-group{
+          justify-content: center;
+        }
+      }
+
+      .newsletter-r{
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    @include breakpoint-down(md){
+      max-width: 100%;
+    }
+  }
+
+  // newsletter left
+  .newsletter-l{
+    .title{
+      color: $color-white;
+    }
+  
+    .form-group{
+      column-gap: 8px;
+      margin-bottom: 24px;
+  
+      .form-input{
+        height: 56px;
+        width: 320px;
+        padding: 16px;
+        border-radius: 8px;
+        border: none;
+        width: 100%;
+  
+        &::placeholder{
+          color: $color-gray;
+          opacity: 0.8;
+        }
+      }
+  
+      .btn{
+        height: 56px;
+        font-size: 18px;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+  
+      @include breakpoint-down(lg){
+        .form-input,
+        .btn{
+          height: 48px;
+        }
+      }
+  
+      @include breakpoint-down(sm){
+        flex-direction: column;
+        row-gap: 12px;
+      }
+    }
+  }
+
+  .newsletter-info{
+    max-width: 466px;
+    border-radius: 16px;
+    padding: 8px;
+    position: relative;
+  
+    &-wrapper{
+      border-radius: 16px;
+      position: relative;
+    }
+  
+    .info-img{
+      border-radius: 12px;
+      overflow: hidden;
+      height: 212px;
+    }
+  
+    .info-text{
+      padding: 32px 20px 24px 20px;
+      .title{
+        margin-bottom: 12px;
+      }
+    }
+  
+    &::before{
+      content: "";
+      position: absolute;
+      top: 42px;
+      right: -50px;
+      background-color: $color-primary;
+      border-radius: 16px;
+      width: 236px;
+      height: 200px;
+    }
+  
+    &::after{
+      content: "";
+      position: absolute;
+      left: -60px;
+      bottom: -42px;
+      background-color: $color-white;
+      opacity: 0.05;
+      border-radius: 16px;
+      width: 236px;
+      height: 200px;
+    }
+  
+    @include breakpoint-down(md){
+      &::before{
+        right: -16px;
+      }
+  
+      &::after{
+        left: -16px;
+        bottom: -16px;
+      }
+    }
+  
+    @include breakpoint-down(sm){
+      &::before{
+        right: 0px;
+      }
+  
+      &::after{
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  @include breakpoint-down(lg){
+    padding-top: 24px;
+  }
+}
+
+
+
+
+
+// grid
+.grid-cols{
+  display: grid;
+  gap: 30px;
+
+  &-2{
+    grid-template-columns: repeat(2, 1fr);
+
+    @include breakpoint-down(md){
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &-3{
+    grid-template-columns: repeat(3, 1fr);
+
+    @include breakpoint-down(lg){
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint-down(md){
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .card-content{
+    padding: 40px 32px;
+
+    @include breakpoint-down(lg){
+      padding: 16px;
+    }
+  }
+
+  @include breakpoint-down(lg){
+    gap: 16px;
+  }
+}
+
+form{
+  .btn,
+  input::placeholder{
+    @include breakpoint-down(lg){
+      font-size: 16px!important;
+    }
+  }
+}
+
+.page-wrapper{
+  overflow: hidden;
+}
