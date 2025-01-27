@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="ftr-list">
           <div className="ftr-item">
             <a href="#" className="ftr-brand text-white">
-              heya <span className="ftr-brand-dot bg-white"></span>
+              Bloog <span className="ftr-brand-dot bg-white"></span>
             </a>
 
             <p className="text text-base">
